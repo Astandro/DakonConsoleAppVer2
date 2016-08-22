@@ -1,0 +1,10 @@
+D:\DakonConsoleApp\Dakon\Dakon\bin\Debug\Dakon.exe
+D:\DakonConsoleApp\Dakon\Dakon\bin\Debug\Dakon.pdb
+D:\DakonConsoleApp\Dakon\Dakon\obj\x86\Debug\Dakon.exe
+D:\DakonConsoleApp\Dakon\Dakon\obj\x86\Debug\Dakon.pdb
+D:\DakonConsoleApp\Dakon\Dakon\obj\x86\Debug\Dakon.csprojResolveAssemblyReference.cache
+C:\Users\AstandroK\Documents\GitHub\DakonConsoleApp\Dakon\obj\x86\Debug\Dakon.exe
+C:\Users\AstandroK\Documents\GitHub\DakonConsoleApp\Dakon\obj\x86\Debug\Dakon.pdb
+C:\Users\AstandroK\Documents\GitHub\DakonConsoleApp\Dakon\bin\Debug\Dakon.exe
+C:\Users\AstandroK\Documents\GitHub\DakonConsoleApp\Dakon\bin\Debug\Dakon.pdb
+C:\Users\AstandroK\Documents\GitHub\DakonConsoleApp\Dakon\obj\x86\Debug\Dakon.csprojResolveAssemblyReference.cache
