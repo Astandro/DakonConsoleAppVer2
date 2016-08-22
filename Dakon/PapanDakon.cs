@@ -93,7 +93,7 @@ namespace Dakon
             return listLubang[0].marblesCount + listLubang[8].marblesCount;
         }
 
-        public void startSecondRound()
+        public Boolean startSecondRound()
         {
             Console.WriteLine("Ronde 1 telah berakhir\nSkor sementara P1 : " + listLubang[8].marblesCount + " P2 : " + listLubang[0].marblesCount);
             Console.WriteLine("Ronde 2 akan dimulai, Player yang menang akan memulai duluan");
@@ -121,6 +121,9 @@ namespace Dakon
                 p2HouseCountWillGotMarbles = (int)(listLubang[0].marblesCount / 7);
                 listLubang[0].marblesCount = listLubang[0].marblesCount % 7;
             }
+
+            if (p1HouseCountWillGotMarbles < 4 || p2HouseCountWillGotMarbles < 4)
+                return false;
 
             //Refill P1 Houses
             for (int i = 1; i < 8; i++)
@@ -153,6 +156,41 @@ namespace Dakon
                     listLubang[i].marblesCount = 7;
                 }
             }
+
+            //Proses Ngacang
+            if (p1HouseCountWillGotMarbles != 7)
+            {
+                int i = 7 - p1HouseCountWillGotMarbles;
+                int sisa = listLubang[8].marblesCount % 7;
+                while (sisa > 0)
+                {
+                    listLubang[i].marblesCount++;
+                    sisa--;
+                    if (i == 1)
+                        i = 7 - p1HouseCountWillGotMarbles;
+                    else
+                        i--;
+                }
+                listLubang[8].marblesCount = 0;
+            }
+            else
+            {
+                int i = 15 - p2HouseCountWillGotMarbles;
+                int sisa = listLubang[0].marblesCount % 7;
+                while (sisa > 0)
+                {
+                    listLubang[i].marblesCount++;
+                    i--;
+                    sisa--;
+                    if (i == 1)
+                        i = 15 - p2HouseCountWillGotMarbles;
+                    else
+                        i--;
+                }
+                listLubang[0].marblesCount = 0;
+            }
+
+            return true;
         }
     }
 }

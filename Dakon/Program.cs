@@ -39,7 +39,7 @@ namespace Dakon
             tangan.playerInTurn = "Player 1";
 
             //Looping giliran pada Ronde 1
-            while(papanDakon1.getTotalMarblesInStoreHouses()!=98)
+            while(!isP1KalahJalan() && !isP2KalahJalan())
             {
                 //Get user input
                 pilihDanAmbilIsiLubang();
@@ -59,15 +59,26 @@ namespace Dakon
                 papanDakon1.printPapanDakon();
             }
 
+            //Ambil sisa biji milik pemenang & masukkan ke storehousenya
+            if (isP1KalahJalan())
+                papanDakon1.listLubang[0].marblesCount += getSisaBijiP2();
+            else
+                papanDakon1.listLubang[8].marblesCount += getSisaBijiP1();
+
             //Inisialisasi Player yang berhak memulai duluan di ronde ke 2
             setSecondRoundFirstPlayer();
+
             //Inisialisasi ronde ke 2
-            papanDakon1.startSecondRound();
+            Boolean isSecondRound = papanDakon1.startSecondRound();
+
+            if (!isSecondRound)
+                Console.WriteLine("Ronde 2 tidak dapat dilaksanakan karena salah satu player memiliki jumlah biji terlalu sedikit");
+
             //Print kondisi awal papan dakon pada ronde ke 2
             papanDakon1.printPapanDakon();
 
             //Looping giliran pada Ronde 2
-            while (papanDakon1.getTotalMarblesInStoreHouses() != 98)
+            while (papanDakon1.getTotalMarblesInStoreHouses() != 98 && isSecondRound)
             {
                 //Get user input
                 pilihDanAmbilIsiLubang();
@@ -94,7 +105,7 @@ namespace Dakon
 
         public static void showFinalMessage()
         {
-            Console.WriteLine("Ronde 2 telah berakhir\nSkor akhir P1 : " + papanDakon1.listLubang[8].marblesCount + " P2 : " + papanDakon1.listLubang[0].marblesCount);
+            Console.WriteLine("Permainan telah berakhir\nSkor akhir P1 : " + papanDakon1.listLubang[8].marblesCount + " P2 : " + papanDakon1.listLubang[0].marblesCount);
             String winner = "";
 
             if (papanDakon1.listLubang[8].marblesCount > papanDakon1.listLubang[0].marblesCount)
@@ -169,7 +180,7 @@ namespace Dakon
             if (papanDakon1.listLubang[tangan.indexPosisi].isStoreHouse && papanDakon1.listLubang[tangan.indexPosisi].owner != tangan.playerInTurn)
                 tangan.indexPosisi++;
 
-            if (!papanDakon1.listLubang[tangan.indexPosisi].isBurnt)
+            if (!papanDakon1.listLubang[tangan.indexPosisi].isBurnt || (papanDakon1.listLubang[tangan.indexPosisi].isBurnt && papanDakon1.listLubang[tangan.indexPosisi].owner==tangan.playerInTurn))
             {
                 tangan.marblesDiTangan--;
 
@@ -216,6 +227,40 @@ namespace Dakon
                 tangan.playerInTurn = "Player 2";
             else
                 tangan.playerInTurn = "Player 1";
+        }
+
+        public static int getSisaBijiP1()
+        {
+            int jumlah=0;
+            for (int i = 1; i < 8; i++)
+                jumlah += papanDakon1.listLubang[i].marblesCount;
+
+            return jumlah;
+        }
+
+        public static int getSisaBijiP2()
+        {
+            int jumlah = 0;
+            for (int i = 9; i < 16; i++)
+                jumlah += papanDakon1.listLubang[i].marblesCount;
+
+            return jumlah;
+        }
+
+        public static bool isP1KalahJalan()
+        {
+            if (getSisaBijiP1() == 0)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool isP2KalahJalan()
+        {
+            if (getSisaBijiP2() == 0)
+                return true;
+            else
+                return false;
         }
     }
 }

@@ -8,3 +8,8 @@ C:\Users\AstandroK\Documents\GitHub\DakonConsoleApp\Dakon\obj\x86\Debug\Dakon.pd
 C:\Users\AstandroK\Documents\GitHub\DakonConsoleApp\Dakon\bin\Debug\Dakon.exe
 C:\Users\AstandroK\Documents\GitHub\DakonConsoleApp\Dakon\bin\Debug\Dakon.pdb
 C:\Users\AstandroK\Documents\GitHub\DakonConsoleApp\Dakon\obj\x86\Debug\Dakon.csprojResolveAssemblyReference.cache
+C:\Users\AstandroK\Documents\GitHub\DakonConsoleAppVer2\Dakon\obj\x86\Debug\Dakon.exe
+C:\Users\AstandroK\Documents\GitHub\DakonConsoleAppVer2\Dakon\obj\x86\Debug\Dakon.pdb
+C:\Users\AstandroK\Documents\GitHub\DakonConsoleAppVer2\Dakon\bin\Debug\Dakon.exe
+C:\Users\AstandroK\Documents\GitHub\DakonConsoleAppVer2\Dakon\bin\Debug\Dakon.pdb
+C:\Users\AstandroK\Documents\GitHub\DakonConsoleAppVer2\Dakon\obj\x86\Debug\Dakon.csprojResolveAssemblyReference.cache
