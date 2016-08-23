@@ -30,11 +30,13 @@ namespace Dakon
 
         static PapanDakon papanDakon1;
         static PointerTangan tangan;
+        static Boolean isSecondRound;
 
         static void Main(string[] args)
         {
             papanDakon1 = PapanDakon.GetInstance();
             tangan = new PointerTangan();
+            isSecondRound = false;
 
             //Round 1
             //Print Kondisi awal Papan Dakon pada Round 1 
@@ -79,7 +81,7 @@ namespace Dakon
                 setSecondRoundFirstPlayer();
 
             //Inisialisasi ronde ke 2
-            Boolean isSecondRound = papanDakon1.startSecondRound();
+            isSecondRound = papanDakon1.startSecondRound();
 
             if (!isSecondRound)
                 Console.WriteLine("Ronde 2 tidak dapat dilaksanakan karena salah satu player memiliki jumlah biji terlalu sedikit");
@@ -232,19 +234,19 @@ namespace Dakon
                 // 6. jika biji di tangan habis pada lubang kosong milik sendiri, maka ambil seluruh biji pada lubang milik musuh yang berseberangan
                 else if (tangan.marblesDiTangan == 0 && papanDakon1.listLubang[tangan.indexPosisi].isEmpty && !papanDakon1.listLubang[tangan.indexPosisi].isStoreHouse && papanDakon1.listLubang[tangan.indexPosisi].owner == tangan.playerInTurn && !papanDakon1.listLubang[tangan.indexPosisi].isBurnt)
                 {
-                    if (tangan.playerInTurn == "Player 1" && !papanDakon1.listLubang[16 - tangan.indexPosisi].isBurnt)
+                    if (tangan.playerInTurn == "Player 1" && !papanDakon1.listLubang[16 - tangan.indexPosisi].isBurnt && !papanDakon1.listLubang[16 - tangan.indexPosisi].isEmpty)
                     {
-                        papanDakon1.listLubang[tangan.indexPosisi].marblesCount = 1;
-                        papanDakon1.listLubang[tangan.indexPosisi].isEmpty = false;
-                        papanDakon1.listLubang[8].marblesCount += papanDakon1.listLubang[16 - tangan.indexPosisi].marblesCount;
+                        papanDakon1.listLubang[tangan.indexPosisi].marblesCount = 0;
+                        papanDakon1.listLubang[tangan.indexPosisi].isEmpty = true;
+                        papanDakon1.listLubang[8].marblesCount += papanDakon1.listLubang[16 - tangan.indexPosisi].marblesCount + 1;
                         papanDakon1.listLubang[16 - tangan.indexPosisi].marblesCount = 0;
                         papanDakon1.listLubang[16 - tangan.indexPosisi].isEmpty = true;
                     }
-                    else if (tangan.playerInTurn == "Player 2" && !papanDakon1.listLubang[7 - (tangan.indexPosisi - 9)].isBurnt)
+                    else if (tangan.playerInTurn == "Player 2" && !papanDakon1.listLubang[7 - (tangan.indexPosisi - 9)].isBurnt && !papanDakon1.listLubang[7 - (tangan.indexPosisi - 9)].isEmpty)
                     {
-                        papanDakon1.listLubang[tangan.indexPosisi].marblesCount = 1;
-                        papanDakon1.listLubang[tangan.indexPosisi].isEmpty = false;
-                        papanDakon1.listLubang[0].marblesCount += papanDakon1.listLubang[7 - (tangan.indexPosisi - 9)].marblesCount;
+                        papanDakon1.listLubang[tangan.indexPosisi].marblesCount = 0;
+                        papanDakon1.listLubang[tangan.indexPosisi].isEmpty = true;
+                        papanDakon1.listLubang[0].marblesCount += papanDakon1.listLubang[7 - (tangan.indexPosisi - 9)].marblesCount + 1;
                         papanDakon1.listLubang[7 - (tangan.indexPosisi - 9)].marblesCount = 0;
                         papanDakon1.listLubang[7 - (tangan.indexPosisi - 9)].isEmpty = true;
                     }
@@ -275,9 +277,17 @@ namespace Dakon
 
         public static int getSisaBijiP1()
         {
-            int jumlah=0;
-            for (int i = 1; i < 8; i++)
-                jumlah += papanDakon1.listLubang[i].marblesCount;
+            int jumlah = 0;
+            if (!isSecondRound)
+            {                
+                for (int i = 1; i < 8; i++)
+                    jumlah += papanDakon1.listLubang[i].marblesCount;             
+            }
+            else
+            {
+                for (int i = papanDakon1.p1HouseBurnt + 1; i < 8; i++)
+                    jumlah += papanDakon1.listLubang[i].marblesCount; 
+            }
 
             return jumlah;
         }
@@ -285,8 +295,16 @@ namespace Dakon
         public static int getSisaBijiP2()
         {
             int jumlah = 0;
-            for (int i = 9; i < 16; i++)
-                jumlah += papanDakon1.listLubang[i].marblesCount;
+            if (!isSecondRound)
+            {
+                for (int i = 9; i < 16; i++)
+                    jumlah += papanDakon1.listLubang[i].marblesCount;
+            }
+            else
+            {
+                for (int i = papanDakon1.p2HouseBurnt + 9; i < 16; i++)
+                    jumlah += papanDakon1.listLubang[i].marblesCount;
+            }
 
             return jumlah;
         }

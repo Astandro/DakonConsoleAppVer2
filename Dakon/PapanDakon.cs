@@ -8,7 +8,8 @@ namespace Dakon
     class PapanDakon
     {
         public List<Lubang> listLubang = null;
-
+        public int p1HouseBurnt = 0;
+        public int p2HouseBurnt = 0;
         private static PapanDakon papanDakon = null;
 
         public PapanDakon()
@@ -125,6 +126,9 @@ namespace Dakon
             if (p1HouseCountWillGotMarbles < 4 || p2HouseCountWillGotMarbles < 4)
                 return false;
 
+            p1HouseBurnt = 7 - p1HouseCountWillGotMarbles;
+            p2HouseBurnt = 7 - p2HouseCountWillGotMarbles;
+
             //Refill P1 Houses
             for (int i = 1; i < 8; i++)
             {
@@ -180,9 +184,8 @@ namespace Dakon
                 while (sisa > 0)
                 {
                     listLubang[i].marblesCount++;
-                    i--;
                     sisa--;
-                    if (i == 1)
+                    if (i == 9)
                         i = 15 - p2HouseCountWillGotMarbles;
                     else
                         i--;
