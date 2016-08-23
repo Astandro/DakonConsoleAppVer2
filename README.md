@@ -20,4 +20,72 @@ Ronde 2
  2. jika ada lubang yang tidak terisi penuh (7 biji), maka lubang tersebut dinyatakan burnt (tidak bisa dilewati musuh, biji di dalamnya tidak boleh diambil, tidak bisa ditembak)
 
 Testcase :
+1
+2
+1
+1
+5
+5
+6
+7
+6
+5
+1
+7
+7
+6
+7
+5
+7 
+4
+6 -> P2 stop di storehouse
+3 -> tembak
+7
+6
+6
+7
+3 -> tembak
+5
+5
+6 -> P1 stop di storehouse
+4 -> P1 stop di lubang kosong milik musuh
+1
+1
+3
+6
+7 -> P2 stop di lubang kosong milik musuh
+7
+1
+1 
+2
+3
+5
+2
+3 -> tembak
+7
+6
+7 -> P1 Kalah jalan, P1 Menang Biji, skor P1=55 P2=43
 
+Ronde 2
+2 -> melompati burnt area
+5
+4 -> tembak
+2
+1
+1
+4
+2
+7
+6 -> stop di storehouse
+2
+1
+6
+7
+2
+2
+5
+2
+1
+6
+1
+7 -> P2 Kalah Jalan, P2 Kalah Biji, Skor P1=71 P2=27

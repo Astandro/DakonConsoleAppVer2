@@ -116,6 +116,10 @@ namespace Dakon
                 papanDakon1.printPapanDakon();
             }
 
+            //Hitung semua sisa biji di papan Dakon
+            isSecondRound = false;
+            papanDakon1.listLubang[0].marblesCount += getSisaBijiP2();
+            papanDakon1.listLubang[8].marblesCount += getSisaBijiP1();
             showFinalMessage();
 
             Console.ReadLine();
